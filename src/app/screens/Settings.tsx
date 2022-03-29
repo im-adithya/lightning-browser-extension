@@ -9,6 +9,7 @@ import Container from "../components/Container";
 import Button from "../components/Button";
 import Toggle from "../components/form/Toggle";
 import Input from "../components/form/Input";
+import TextField from "../components/form/TextField";
 import Setting from "../components/Setting";
 
 function Settings() {
@@ -92,6 +93,36 @@ function Settings() {
           ) : (
             <p className="text-green-500 font-medium">Permission granted</p>
           )}
+        </Setting>
+
+        <Setting title="Change Password" subtitle="Change your password">
+          <div className="w-64">
+            <div className="mt-6">
+              <TextField
+                id="newPassword"
+                label="New Password"
+                type="password"
+                autoFocus
+                required
+              />
+              {/*errors.password && (
+                <div className="mt-1 text-red-500">{errors.password}</div>
+              )*/}
+            </div>
+            <div className="mt-6">
+              <TextField
+                id="passwordConfirmation"
+                label="Confirm Password"
+                type="password"
+                required
+              />
+              {/*errors.passwordConfirmation && (
+                <div className="mt-1 text-red-500">
+                  {errors.passwordConfirmation}
+                </div>
+              )*/}
+            </div>
+          </div>
         </Setting>
       </div>
     </Container>
