@@ -1,11 +1,11 @@
 import Dexie from "dexie";
 import "fake-indexeddb/auto";
 import browser from "webextension-polyfill";
-import type { Allowance, Payment, Blocklist } from "~/types";
+import type { Allowance, Transaction, Blocklist } from "~/types";
 
 class DB extends Dexie {
   allowances: Dexie.Table<Allowance, number>;
-  payments: Dexie.Table<Payment, number>;
+  payments: Dexie.Table<Transaction, number>;
   blocklist: Dexie.Table<Blocklist, number>;
 
   constructor() {
