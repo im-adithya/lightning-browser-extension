@@ -1,4 +1,5 @@
-import { Battery, BatteryMetaTagRecipient } from "~/types";
+import { setLightningData } from "~/extension/content-script/batteries/helpers";
+import { BatteryMetaTagRecipient } from "~/types";
 
 import getOriginData from "../originData";
 
@@ -19,7 +20,7 @@ const parseRecipient = (content: string): BatteryMetaTagRecipient => {
   return recipient;
 };
 
-const battery = (): Battery | void => {
+const battery = (): void => {
   const monetizationTag = document.querySelector<HTMLMetaElement>(
     'head > meta[name="lightning" i]'
   );
@@ -42,10 +43,12 @@ const battery = (): Battery | void => {
 
   const metaData = getOriginData();
 
-  return {
-    ...recipient,
-    ...metaData,
-  };
+  setLightningData([
+    {
+      ...recipient,
+      ...metaData,
+    },
+  ]);
 };
 
 const Monetization = {
