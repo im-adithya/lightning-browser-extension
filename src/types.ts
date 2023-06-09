@@ -17,6 +17,7 @@ export interface Account {
   config: string;
   name: string;
   nostrPrivateKey?: string | null;
+  liquidPrivateKey?: string | null;
   mnemonic?: string | null;
 }
 
@@ -327,7 +328,10 @@ export interface MessageAllowanceEnable extends MessageDefault {
   args: {
     host: Allowance["host"];
   };
-  action: "public/webln/enable" | "public/nostr/enable";
+  action:
+    | "public/webln/enable"
+    | "public/nostr/enable"
+    | "public/liquid/enable";
 }
 
 export interface MessageAllowanceDelete extends MessageDefault {
@@ -654,6 +658,11 @@ export interface Payment extends Omit<DbPayment, "id"> {
   id: number;
 }
 
+export enum PermissionMethodLiquid {
+  LIQUID_SIGNSCHNORR = "liquid/signSchnorr",
+  LIQUID_GETPUBLICKEY = "liquid/getPublicKey",
+}
+
 export enum PermissionMethodNostr {
   NOSTR_SIGNMESSAGE = "nostr/signMessage",
   NOSTR_SIGNSCHNORR = "nostr/signSchnorr",
@@ -751,6 +760,7 @@ export interface SettingsStorage {
   currency: CURRENCIES;
   exchange: SupportedExchanges;
   nostrEnabled: boolean;
+  liquidEnabled: boolean;
   closedTips: TIPS[];
   bitcoinNetwork: "bitcoin" | "regtest";
 }

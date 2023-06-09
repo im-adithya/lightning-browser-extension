@@ -26,6 +26,16 @@ const changePassword = async (message: Message) => {
         newPassword
       );
     }
+    if (accounts[accountId].liquidPrivateKey) {
+      const accountLiquidKey = decryptData(
+        accounts[accountId].liquidPrivateKey as string,
+        password
+      );
+      tmpAccounts[accountId].liquidPrivateKey = encryptData(
+        accountLiquidKey,
+        newPassword
+      );
+    }
   }
   await state.getState().password(newPassword);
   state.setState({ accounts: tmpAccounts });
