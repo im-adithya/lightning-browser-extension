@@ -23,7 +23,7 @@ async function onstart() {
     injectScript(browser.runtime.getURL("js/inpageScriptNostr.bundle.js"));
   }
 
-  // window.secp256k1
+  // window.liquid
   if (accountDetails.liquidEnabled) {
     injectScript(browser.runtime.getURL("js/inpageScriptLiquid.bundle.js"));
   }
